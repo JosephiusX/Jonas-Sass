@@ -1,0 +1,92 @@
+.story{
+    width: 75%;
+    margin: 0 auto;
+    box-shadow: 0 3rem 6rem rgba($color-black, .1);
+    background-color: rgba($color-white, .6);
+    border-radius: 3px;
+    padding: 6rem;
+    padding-left: 9rem;
+    font-size: $default-font-size;
+    transform: skewX(-12deg);
+    
+    @include respond(tab-port) {
+        width: 100%;
+        padding: 4rem;
+        padding-left: 7rem;
+    }
+    
+    @include respond(phone) {
+        transform: skewX(0);   
+    }
+
+   // & > * { // & (direct child) * (select all)
+        // transform: skewX(12deg); // works for the words but not the picture  cant have 2 transform properties at the same time. The "transform: translateX(-3rem);" below takes precident    }
+        // solution- add the skewX to the transform below on the photo
+
+    &__shape {
+        width: 15rem; // also must have for shape outside
+        height: 15rem;
+        float: left; // makes the other content float around it
+        // like clip-path in practice - not outcome
+        transform: translateX(-3rem) skewX(12deg); // best way to move a floated item as opposed to margin
+        position: relative;
+        overflow: hidden;// solution to lines on side of story images 
+        // border-radius: 50%; // seems to have no effect
+        
+        // for browsers
+        @supports (clip-path: polygon(0 0)) or (-webkit-clip-path: polygon(0 0)) {
+            -webkit-clip-path: circle(50% at 50% 50%);
+            clip-path: circle(50% at 50% 50%);
+            -webkit-shape-outside: circle(50% at 50% 50%); // for thease to work the element must be floated
+            shape-outside: circle(50% at 50% 50%);// radius(50% width) at location x location y
+        }
+
+        @include respond(phone) {
+            transform: translateX(-3rem) skewX(0);   
+        }
+    }
+
+    &__img {
+       
+        height: 100%;  // width: 100%; // dosent work because the image is wider than it is high
+        transform: translateX(-4rem) scale(1.4);
+        backface-visibility: hidden; // this was placed to fix a glitch but ended up causing one
+        transition: all .5s;
+
+        @include respond(phone) {
+            transform: skewX(0);   
+        }
+    }
+
+    &__text {
+        transform: skewX(12deg);
+
+        @include respond(phone) {
+            transform: skewX(0);   
+        }
+    }
+
+    &__caption {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, 20%);
+        color: $color-white;
+        text-transform: uppercase;
+        font-size: 1.7rem;
+        text-align: center;
+        opacity: 0;
+        transition: all .5s;
+        backface-visibility: hidden; // fixes small movement glitch
+    }
+
+    &:hover &__caption { // as soon as the story is hovered then we want to change the caption
+        opacity: 1;
+        transform: translate(-50%, -50%);
+    }
+
+    &:hover &__img {
+        transform: translateX(-4rem) scale(1);
+        filter: blur(3px) brightness(80%); // lots of fun options with filter
+    }
+}

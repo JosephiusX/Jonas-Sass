@@ -7,5 +7,26 @@
     &__content {
        background-color: $color-grey-light-1; 
        grid-column: col-start 5 / full-end;
+
+          padding: 6rem 8vw;
+       
+
+            // the flexbox way
+    //    display: flex; // here we are using flexbox within a grid
+    //    flex-direction: column; // changing main axis to top to bottom 
+    //    justify-content: center; // centers using main axis
+    //    align-items: flex-start; // changing it from a default of stretch
+    
+    
+            // same with Grid
+        display:grid;
+        align-content: center;
+        justify-items: start;
+    }
+
+    &__text {
+        font-size: 1.5rem;
+        font-style: italic;
+        margin-bottom: 4rem;
     }
 }

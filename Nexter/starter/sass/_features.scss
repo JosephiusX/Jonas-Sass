@@ -1,4 +1,4 @@
-.features {
+.features { // this the features container
     grid-column: center-start / center-end;
 
     margin: 15rem 0;
@@ -8,3 +8,17 @@
 
     grid-gap: 6rem;
 }
+
+.feature { // this is for the individual features in the feature container
+
+    &__icon { // svh image
+        fill: $color-primary;
+        width: 4.5rem;
+        height: 4.5rem;
+    }
+
+    &__text {
+        font-size: 1.7rem;
+    }
+}
+

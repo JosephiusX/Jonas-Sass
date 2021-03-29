@@ -1,4 +1,10 @@
 .features {
-    background-color: $color-grey-light-2;
     grid-column: center-start / center-end;
+
+    margin: 15rem 0;
+
+    display: grid; // here we are turning a grid item into a grid container as well
+    grid-template-columns: repeat(3, 1fr); // 3 equally sized columns
+
+    grid-gap: 6rem;
 }

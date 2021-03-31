@@ -3,7 +3,7 @@
     margin: 15rem 0;
 
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr)); // defining columns and leaving the rows implicit
+    grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr)); // defining columns and leaving the rows implicitn
     grid-gap:7rem;
 }
 
@@ -11,7 +11,8 @@
     background-color: $color-grey-light-1;
 
     display: grid;
-    grid-template-columns: repeat(2, 1fr); // again we difine the column and let grid handle the rows implicidly 
+    grid-template-columns: repeat(2, 1fr); // again we difine the column and let grid handle the rows implicidly
+    grid-row-gap: 3.5rem; 
 
     &__img {
         width: 100%;
@@ -31,8 +32,28 @@
        margin: 1rem;
     }
     
-    &__name {
-        grid-column: 1 / -1;
+    &__name { // the home name
+        grid-row: 1 / 2; // defines where it starts and ends vertically
+        grid-column: 1 / -1; // define where horizontally it starts and ends
+        justify-self: center; // horizontally
+        align-self: end; // vertically
+        z-index: 3;
+
+        justify-self: center;
+        width: 80%;
+        font-family: $font-display;
+        font-size: 1.6rem;
+        text-align: center;
+        padding: 1.25rem;
+        background-color: $color-secondary;
+        color: #fff;
+        font-weight: 400;
+        transform: translateY(50%); // 50% of the height of the element
+    }
+
+    &__location, // this is how we are sekecting all the svg icons at once
+    &__rooms {
+        margin-top: 2.5rem;
     }
 
     &__location, // this is how we are sekecting all the svg icons at once
@@ -40,14 +61,18 @@
     &__area,
     &__price {
 
+        font-size: 1.5rem;
+        margin-left: 2rem;
+
+        display: flex; // easilly place the Icon becide the text using flexbox
+        // flex-direction: column; // it is set to row by default
+        align-items: center;
+
         svg {
             fill: $color-primary;
             height: 2rem;
             width: 2rem;
-        }
-
-        p {
-
+            margin-right: 1rem;
         }
 
     }

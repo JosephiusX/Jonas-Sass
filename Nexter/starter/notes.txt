@@ -1,0 +1,2 @@
+I can set the live server to open in firefox in package.json scripts like so:
+"devserver": "live-server --browser=firefox",
